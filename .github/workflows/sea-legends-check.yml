@@ -1,0 +1,24 @@
+name: Sea Legends syntax check
+on:
+  push:
+    paths:
+      - 'sea-legends/**'
+      - '.github/workflows/sea-legends-check.yml'
+  pull_request:
+    paths:
+      - 'sea-legends/**'
+      - '.github/workflows/sea-legends-check.yml'
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: sea-legends
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: npm install
+      - run: node --check server.js
+      - run: node --check client.js
