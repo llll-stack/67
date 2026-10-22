@@ -1,0 +1,12 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Sea Legends — Aventura Online</title><link rel="stylesheet" href="style.css"></head>
+<body><div id="loading">Carregando Sea Legends…</div><header class="hud">
+ <div class="brand"><b>SEA LEGENDS</b><small>AVENTURA ONLINE</small></div>
+ <div class="bars"><div>LV <strong id="level">1</strong><div class="bar"><i id="xpbar"></i></div><small id="xptext">0 / 100 XP</small></div><div>❤️ <strong id="hp">100/100</strong><div class="bar red"><i id="hpbar"></i></div></div><div>⚡ <strong id="energy">100/100</strong><div class="bar blue"><i id="enbar"></i></div></div></div>
+ <div class="currency"><span>฿ <b id="money">0</b></span><span>☠ <b id="bounty">0</b></span><span>⚓ <b id="honor">0</b></span></div>
+</header>
+<main><div id="world"><div class="crosshair">+</div><div class="hint">WASD mover · Mouse olhar · Clique atacar · E interagir · I inventário · M loja · K atributos · Q missão</div><div id="toast"></div></div>
+<aside class="quick"><button data-panel="inventory">🎒 Inventário <kbd>I</kbd></button><button data-panel="shop">🍈 Frutas <kbd>M</kbd></button><button data-panel="stats">📊 Atributos <kbd>K</kbd></button><button data-panel="quests">📜 Missões <kbd>Q</kbd></button><button data-panel="profile">👤 Perfil</button><button id="attack">👊 Combat (clique)</button><section class="questmini"><b id="questtitle">Sem missão</b><p id="questprogress">Fale com o NPC de missão na ilha.</p></section><section class="minimap"><b>SEA LEGENDS</b><p>Ilha Inicial</p><small id="players">Jogadores online: 1</small></section></aside>
+</main>
+<div id="panel" class="panel hidden"><div class="panelhead"><h2 id="paneltitle">Inventário</h2><button id="close">✕</button></div><div id="panelcontent"></div></div>
+<script src="/socket.io/socket.io.js"></script><script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script><script src="client.js"></script></body></html>
