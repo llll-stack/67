@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#09121d"><title>67 Tower Defense</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="shell">
+    <header class="topbar"><div class="brand"><span class="brand-mark">67</span><div><h1>67 TOWER DEFENSE</h1><small>DEFENDA A ROTA. SOBREVIVA ÀS ONDAS.</small></div></div><div class="top-actions"><button id="pauseBtn" class="ghost">Ⅱ Pausar</button><button id="speedBtn" class="ghost">1× Velocidade</button></div></header>
+    <section class="hud"><div class="stat"><small>CRÉDITOS</small><b id="money">$0</b></div><div class="stat"><small>ONDA</small><b id="wave">—</b></div><div class="stat"><small>DIFICULDADE</small><b id="difficulty">NORMAL</b></div><div class="stat"><small>BASE</small><b id="lives">20 ♥</b></div><div class="stat progress-stat"><small>PROGRESSO DA ONDA</small><div class="progress"><i id="progress"></i></div><span id="progressText">Preparando defesa</span></div></section>
+    <section class="layout"><div class="game-frame"><canvas id="game" aria-label="Campo de batalha Tower Defense"></canvas><div class="canvas-hint" id="hint">Escolha uma torre e clique em um terreno livre para posicioná-la.</div><div class="overlay hidden" id="modal"><div class="modal-card"><div class="eyebrow">67 TOWER DEFENSE</div><h2 id="modalTitle"></h2><p id="modalText"></p><button id="modalBtn" class="primary"></button></div></div></div>
+      <aside class="side"><section class="panel"><div class="panel-head"><h2>DEFESAS</h2><span>8 TORRETAS</span></div><div id="shop" class="shop"></div></section><section class="panel selected-panel" id="selectedPanel"><div class="panel-head"><h2 id="selectedTitle">TORRE SELECIONADA</h2><span id="selectedLevel">—</span></div><p id="selectedStats" class="muted">Selecione uma torre no campo para ver atributos, melhorar ou vender.</p><div class="button-row"><button id="upgradeBtn" class="primary" disabled>Melhorar</button><button id="sellBtn" class="ghost" disabled>Vender</button></div></section><section class="panel controls"><div class="panel-head"><h2>COMANDO</h2><span id="bestWave">RECORDE: 0</span></div><div class="button-row"><button id="startBtn" class="primary wide">Iniciar onda 1</button></div><div class="mode-row"><button class="mode active" data-mode="normal">Normal</button><button class="mode" data-mode="infinite">Infinito</button></div><p class="muted tiny">Normal: sobreviva a 20 ondas e derrote o chefe. Infinito: ondas crescentes, sem fim.</p></section></aside></section>
+    <footer><span>67 TD <i>•</i> estratégia em tempo real</span><span>Atalhos: <kbd>Espaço</kbd> iniciar onda <i>·</i> <kbd>Esc</kbd> cancelar seleção</span></footer>
+  </main><script src="game.js"></script>
+</body></html>
