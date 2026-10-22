@@ -31,7 +31,7 @@ function sendState(s){const p=playerFor(s);if(p)s.emit('state',pub(p));}
 app.get('/api/fruit-rotation',(req,res)=>{rotate();res.json({fruits:db.rotation.ids.map(id=>FRUITS.find(f=>f.id===id)),nextAt:db.rotation.at});});
 io.on('connection',s=>{
  s.on('join',data=>{let name=String(data&&data.name||'Pirata').slice(0,20);let key=String(data&&data.playerKey||'').replace(/[^a-zA-Z0-9_-]/g,'').slice(0,80);if(!key)key=s.id;socketToKey[s.id]=key;if(!db.players[key])db.players[key]=newPlayer(name);db.players[key].name=name;db.players[key].pos={x:0,z:4};rotate();persist();sendState(s);s.emit('rotation',{fruits:db.rotation.ids.map(f=>FRUITS.find(x=>x.id===f)),nextAt:db.rotation.at});s.emit('enemies',enemies.map(e=>({...e})));io.emit('online',io.engine.clientsCount);});
- s.on('chooseFaction',f=>{const p=db.players[s.id];if(!p)return;if(['Pirata','Marinheiro'].includes(f))p.faction=f;persist();sendState(s);});
+ s.on('chooseFaction',f=>{const p=playerFor(s);if(!p)return;if(['Pirata','Marinheiro'].includes(f))p.faction=f;persist();sendState(s);});
  s.on('acceptQuest',id=>{const p=db.players[s.id],q=QUESTS.find(q=>q.id===id);if(!p||!q||p.level<q.min)return;if(p.quest)return;p.quest=q.id;p.questCount=0;persist();sendState(s);});
  s.on('abandonQuest',()=>{let p=playerFor(s);if(p){p.quest=null;p.questCount=0;persist();sendState(s);}});
  s.on('enemyDefeated',()=>{const p=db.players[s.id];if(!p)return;p.kills++;addXP(p,20+p.level);p.money+=50+Math.floor(p.level*2);if(p.quest){const q=QUESTS.find(q=>q.id===p.quest);if(q){p.questCount++;if(p.questCount>=q.target){p.money+=q.money;p.quest=null;p.questCount=0;addXP(p,q.xp);s.emit('toast','Missão concluída! Recompensas recebidas.');}}}persist();sendState(s);});
